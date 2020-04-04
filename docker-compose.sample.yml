@@ -95,19 +95,17 @@ services:
 #      - default
 
   mysql:
-    image: mysql/mysql-server:${MYSQL_VERSION}
+    image: mariadb:${MYSQL_VERSION}
     container_name: mysql
     ports:
       - "${MYSQL_HOST_PORT}:3306"
     volumes:
-      - ${MYSQL_CONF_FILE}:/etc/mysql/conf.d/mysql.cnf:ro
       - ${DATA_DIR}/mysql:/var/lib/mysql/:rw
     restart: always
     networks:
       - default
     environment:
       MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
-      TZ: "$TZ"
 
 #  mysql5:
 #    image: mysql:${MYSQL5_VERSION}
